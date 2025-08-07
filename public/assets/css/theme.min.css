@@ -7,49 +7,56 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-    --bs-blue: #334AC0;
-    --bs-indigo: #6610f2;
-    --bs-purple: #6f42c1;
-    --bs-pink: #d63384;
-    --bs-red: #692340;
-    --bs-orange: #fd7e14;
-    --bs-yellow: #f39568;
-    --bs-green: #0ABF53;
-    --bs-teal: #077C76;
-    --bs-cyan: #0dcaf0;
-    --bs-black: #000;
-    --bs-white: #fff;
-    --bs-gray: #8C98A4;
-    --bs-gray-dark: #51596C;
-    --bs-gray-100: #F5F7FA;
-    --bs-gray-200: #f3f6f9;
-    --bs-gray-300: #dce0e5;
-    --bs-gray-400: #BDC5D1;
-    --bs-gray-500: #97A4AF;
-    --bs-gray-600: #8C98A4;
-    --bs-gray-700: #677788;
-    --bs-gray-800: #51596C;
-    --bs-gray-900: #2d374b;
-    --bs-primary: #0ABF53;
-    --bs-secondary: #51596C;
-    --bs-success: #077C76;
-    --bs-info: #334AC0;
-    --bs-warning: #f39568;
-    --bs-danger: #692340;
-    --bs-light: #F5F7FA;
-    --bs-dark: #2d374b;
-    --bs-primary-rgb: 10, 191, 83;
-    --bs-secondary-rgb: 81, 89, 108;
-    --bs-success-rgb: 7, 124, 118;
-    --bs-info-rgb: 51, 74, 192;
-    --bs-warning-rgb: 243, 149, 104;
-    --bs-danger-rgb: 105, 35, 64;
-    --bs-light-rgb: 245, 247, 250;
-    --bs-dark-rgb: 45, 55, 75;
-    --bs-white-rgb: 255, 255, 255;
-    --bs-black-rgb: 0, 0, 0;
-    --bs-body-color-rgb: 81, 89, 108;
-    --bs-body-bg-rgb: 255, 255, 255;
+  --bs-blue: #3C7C6E;         /* Bleu canard, info utile */
+  --bs-indigo: #3D3C6D;       /* Indigo sourd, peu utilisé ici */
+  --bs-purple: #7E5A9B;       /* Pour éléments éventuellement décoratifs */
+  --bs-pink: #D989B5;         /* Optionnel, doux */
+  --bs-red: #A53838;          /* Rouge terre, erreurs ou alertes */
+  --bs-orange: #E09F3E;       /* Orange citrouille, secondaire naturel */
+  --bs-yellow: #F9A825;       /* Jaune blé, pour attention / highlight */
+  --bs-green: #7BAE45;        /* Vert olive, succès */
+  --bs-teal: #056839;         /* Ton principal aussi */
+  --bs-cyan: #A8D5BA;         /* Vert d’eau clair, complément naturel */
+
+  --bs-black: #000000;
+  --bs-white: #ffffff;
+
+  --bs-gray: #9DA79E;         /* Gris végétal */
+  --bs-gray-dark: #5E503F;    /* Marron foncé / bois */
+  --bs-gray-100: #F9FBF9;
+  --bs-gray-200: #E1EDE4;
+  --bs-gray-300: #DCE0E5;
+  --bs-gray-400: #BDC5D1;
+  --bs-gray-500: #9DA79E;
+  --bs-gray-600: #8C98A4;
+  --bs-gray-700: #677788;
+  --bs-gray-800: #51596C;
+  --bs-gray-900: #2F3D33;
+
+  --bs-primary: #056839;          /* Vert forêt */
+  --bs-secondary: #5E503F;        /* Marron terre */
+  --bs-success: #7BAE45;          /* Vert olive clair */
+  --bs-info: #3C7C6E;             /* Bleu canard naturel */
+  --bs-warning: #F9A825;          /* Jaune blé */
+  --bs-danger: #A53838;           /* Rouge terre */
+  --bs-light: #F1F8F4;            /* Vert très pâle */
+  --bs-dark: #2F3D33;             /* Vert-noir profond */
+
+  --bs-primary-rgb: 5, 104, 57;
+  --bs-secondary-rgb: 94, 80, 63;
+  --bs-success-rgb: 123, 174, 69;
+  --bs-info-rgb: 60, 124, 110;
+  --bs-warning-rgb: 249, 168, 37;
+  --bs-danger-rgb: 165, 56, 56;
+  --bs-light-rgb: 241, 248, 244;
+  --bs-dark-rgb: 47, 61, 51;
+
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+
+  --bs-body-color-rgb: 47, 61, 51;
+  --bs-body-bg-rgb: 255, 255, 255;
+  
     /* --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
     

@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('banner_photo')->nullable();
             $table->string('youtube')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('contact_email')->nullable();

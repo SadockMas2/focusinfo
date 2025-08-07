@@ -1,6 +1,6 @@
 @extends('layout.base')
 @section('content')
-    @include('layout.partials.slider')
+    {{-- @include('layout.partials.slider') --}}
     <div style="height: 100px"></div>
     @include('layout.partials.about')
     <div style="height: 100px"></div>
@@ -10,6 +10,18 @@
     <div style="height: 100px"></div>
     {{-- @include('layout.partials.cta') --}}
     @include('layout.partials.partner')
+
+    <div class="overflow-hidden">
+        <div class="container content-space-t-3 content-space-t-lg-4 content-space-b-1 content-space-b-lg-2">
+            <div class="w-lg-50 text-center mx-lg-auto">
+                <!-- Heading -->
+                <div class="mb-5">
+                    <h1 class="display-4">Nos Article</h1>
+                    <p>Voici en articles nos dernières activités.</p>
+                </div>
+            </div>
+        </div>       
+    </div>
     @include('layout.partials.blog')
 
 

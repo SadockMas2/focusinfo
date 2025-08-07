@@ -3,6 +3,12 @@
 declare(strict_types=1);
 
 return [
+    'about'=> 'A propos',
+    'who_we_are' => "Qui sommes-nous ?",
+    'domaines'=>'Nos Domaines d\'intervention',
+
+
+
     'fr' => 'Français',
     'en' => 'Anglais',
     'home' => 'Acceuil',

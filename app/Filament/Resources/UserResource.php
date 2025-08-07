@@ -19,7 +19,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
@@ -27,7 +27,7 @@ class UserResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Utilisateurs';
+        return 'Paramètres';
     }
 
     public static function getNavigationLabel(): string
@@ -60,8 +60,7 @@ class UserResource extends Resource
                     ->label('Avatar')
                     ->image()
                     ->imageEditor()
-                    ->maxSize(2048)
-                DateTimePicker::make('email_verified_at'),
+                    ->maxSize(2048),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
@@ -73,13 +72,17 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('avatar')
+                    ->label('Avatar')
+                    ->circular()
+                    ->size(50),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
+                // Tables\Columns\TextColumn::make('email_verified_at')
+                //     ->dateTime()
+                //     ->sortable(),
 
             ])
             ->filters([

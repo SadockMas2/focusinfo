@@ -121,6 +121,18 @@ class SettingResource extends Resource
                             ->maxSize(2048)
                             ->columnSpan(2),
 
+
+                            FileUpload::make('banner_photo')
+                            ->label('Photo Superieur des Pages')
+                            ->directory('about')
+                            ->required()
+                            ->image()
+                            ->imageEditor()
+                            ->maxSize(2048)
+                            ->columnSpan(2),
+
+
+
                         TextInput::make('video_url')
                             ->label('Url de la Video Youtube de Presentation')
                             ->maxLength(255)

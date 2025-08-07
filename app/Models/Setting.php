@@ -14,6 +14,7 @@ class Setting extends Model
         'linkedin',
         'contact_email',
         'contact_phone',
+        'banner_photo',
         'address',
         'logo',
         'favicon',

@@ -5,13 +5,13 @@
 @section('parent_url', route('about'))
 @section('active_page_desc', 'A Propos de nous')
 @section('active_page', 'A Propos')
-{{-- @include('layout.partials.banner')
+@include('layout.partials.banner')
 @include('layout.partials.about')
 @include('layout.partials.faq')
 <div style="height:80px"></div>
 @include('layout.partials.partner')
-@include('layout.partials.contact') --}}
-
+@include('layout.partials.contact')
+{{-- 
     <div class="container content-space-t-3 content-space-t-lg-4">
       <div class="w-lg-65 text-center mx-lg-auto mb-5 mb-sm-7 mb-lg-10">
         <h1 class="display-4">About</h1>
@@ -429,4 +429,6 @@
       </div>
     </div>
     <!-- End CTA -->
-@endsection
+ --}}
+
+ @endsection

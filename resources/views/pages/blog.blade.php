@@ -6,18 +6,18 @@
             <div class="w-lg-50 text-center mx-lg-auto">
                 <!-- Heading -->
                 <div class="mb-5">
-                    <h1 class="display-4">Insights</h1>
-                    <p>Stay in the know with insights from industry experts.</p>
+                    <h1 class="display-4">Nos Article</h1>
+                    <p>Voici en articles nos dernières activités.</p>
                 </div>
                 <!-- End Heading -->
 
-                <form>
+                <form method="GET" action="{{ route('blog') }}">
                     <div class="position-relative">
                         <!-- Input Card -->
                         <div class="input-card input-card-sm">
                             <div class="input-card-form">
-                                <label for="searchForm" class="form-label visually-hidden">Search article</label>
-                                <input type="text" class="form-control form-control-lg" id="searchForm"
+                                <label for="searchForm" class="form-label visually-hidden">Chercher un Article</label>
+                                <input type="text" class="form-control form-control-lg" id=""
                                     placeholder="Search article" aria-label="Search article">
                             </div>
                             <button type="button" class="btn btn-primary btn-lg"><i class="bi-search"></i></button>
@@ -42,18 +42,16 @@
             </div>
         </div>
         <div class="text-center">
-            <a class="btn btn-white btn-sm m-1" href="blogs.html">Tout</a>
-            <a class="btn btn-white btn-sm m-1" href="blogs-1.html?categ=education-environnementale&amp;id=12">Éducation
-                Environnementale</a>
-            <a class="btn btn-white btn-sm m-1" href="blogs-2.html?categ=communication-et-medias&amp;id=6">Communication
-                et Médias</a>
-            <a class="btn btn-white btn-sm m-1" href="blogs-3.html?categ=elevage&amp;id=7">Élevage</a>
-            <a class="btn btn-white btn-sm m-1" href="blogs-4.html?categ=agriculture&amp;id=5">Agriculture</a>
-            <a class="btn btn-white btn-sm m-1" href="blogs-5.html?categ=peche&amp;id=8">Pêche</a>
+            <a class="btn btn-white btn-sm m-1" href="{{ route('blog') }}">Toutes</a>
+
+            @foreach ($categories as $category)
+                <a class="btn btn-white btn-sm m-1"
+                    href="{{ route('blog', ['categ' => $category->slug]) }}">{{ $category->name }}</a>
+            @endforeach
         </div>
     </div>
 
-   @include('layout.partials.blog')
+    @include('layout.partials.blog')
 
     {{-- @include('layout.partials.contact') --}}
 

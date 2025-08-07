@@ -2,36 +2,34 @@
 
 use App\Http\Controllers\ContactController;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Counter;
 use App\Models\Slide;
 use App\Models\Report;
 use App\Models\Domain;
+use App\Models\Benevole;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
 
-Route::post('/set-locale', function (Illuminate\Http\Request $request) {
-            $request->validate(['locale' => 'required|in:en,fr']);
-            Session::put('locale', $request->locale);
-            return Redirect::back();
-        })->name('set-locale');
-        
-        Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'fr'])) {
-        session(['locale' => $locale]);
-        app()->setLocale($locale);
+Route::get('/lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'fr'])) {
+        abort(400); // Langue non supportée
     }
-    return back();
-})->name('lang.switch');
+    //  App::setLocale(Session::get('locale'));
+    Session::put('locale', $locale);
+    return redirect()->back();
+
+})->name('change_language');
 
 
 Route::get('/', function () {
     $slides = Slide::where('s_status', 'active')->get();
     $counters = Counter::get();
     $domains = Domain::get();
-    $articles = Article::with('category')->with('author')->paginate(10);
-    return view('pages.home', compact('slides', 'counters','domains','articles'));
+    $articles = Article::with('category')->with('author')->paginate(3);
+    return view('pages.home', compact('slides', 'counters', 'domains', 'articles'));
 })->name('acceuil');
 Route::get('/qui-sommes-nous', function () {
     $history = Slide::where('s_status', 'active')->get();
@@ -57,8 +55,9 @@ Route::get('/nous-faire-un-don', function () {
     return view('pages.donate');
 })->name('don');
 Route::get('/articles', function () {
-    $articles = Article::with('category')->paginate(10);
-    return view('pages.blog', compact('articles'));
+    $categories = Category::all();
+    $articles = Article::with('category')->with('author')->paginate(12);
+    return view('pages.blog', compact('articles', 'categories'));
 })->name('blog');
 
 
@@ -80,8 +79,8 @@ Route::get('/devenir-benevole', function () {
 
 
 Route::get('/notre-equipe', function () {
-    $equipe = Report::paginate(10);
-    return view('pages.equipe', compact('equipe'));
+    $members = Benevole::paginate(10);
+    return view('pages.equipe', compact('members'));
 })->name('equipe');
 
 Route::get('/boutique', function () {
@@ -90,12 +89,12 @@ Route::get('/boutique', function () {
 })->name('boutique');
 
 Route::get('/article/{slug}', function (string $slug) {
-    $article = Article::where('slug', $slug)->with('category')->firstOrFail();
-    $articles = Article::with('category')->paginate(10);
+    $article = Article::where('slug', $slug)->with('category')->with('comments')->firstOrFail();
+    $articles = Article::with('category')->with('comments')->paginate(3);
     return view('pages.blog-single', compact('article', 'articles'));
 })->name('blog_detail');
 
-Route::get('telecharger/{filename}', function($filename){
+Route::get('telecharger/{filename}', function ($filename) {
     return response()->download($filename);
 })->name('downaload');
 
