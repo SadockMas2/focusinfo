@@ -1,4 +1,4 @@
-<div class="container content-space-1">
+<div class="container content-space-1" id="faqs">
     <div class="row">
         <div class="col-lg-4 mb-5 mb-lg-0">
             <h3>Foire aux questions</h3>

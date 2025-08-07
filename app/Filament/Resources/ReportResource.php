@@ -63,7 +63,7 @@ class ReportResource extends Resource
                             ->columnSpan(2),
 
                         FileUpload::make('file')
-                            ->label('Photo Illustation du Rapport')
+                            ->label('Fichier du Rapport')
                             ->directory('rapports/documents')
                             ->maxSize(2048)
                             ->columnSpan(2),

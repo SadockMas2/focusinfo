@@ -31,7 +31,7 @@
                      <ul class="list-unstyled list-py-1 mb-0">
                          <li><a class="link link-light link-light-75" href="{{ route('about') }}">Qui sommes-nous ?</a>
                          </li>
-                         <li><a class="link link-light link-light-75" href="{{ route('about') }}#equipe">Notre
+                         <li><a class="link link-light link-light-75" href="{{ route('equipe') }}">Notre
                                  Equipe</a></li>
                          <li><a class="link link-light link-light-75"
                                  href="{{ route('about') }}#partenaires">Partenaires</a></li>
@@ -106,7 +106,7 @@
                                  </div>
                              </a></li>
 
-                         <li><a class="link link-light link-light-75" href="{{ $settings->twwiter }}" target="_blank">
+                         <li><a class="link link-light link-light-75" href="{{ $settings->twitter }}" target="_blank">
                                  <div class="d-flex">
                                      <div class="flex-shrink-0">
                                          <i class="bi-twitter"></i>
@@ -118,7 +118,8 @@
                                  </div>
                              </a></li>
 
-                         <li><a class="link link-light link-light-75" href="{{ $settings->instagram }}"
+                         <li>
+                             <a class="link link-light link-light-75" href="{{ $settings->instagram }}"
                                  target="_blank">
                                  <div class="d-flex">
                                      <div class="flex-shrink-0">
@@ -129,7 +130,23 @@
                                          <span>Instagram</span>
                                      </div>
                                  </div>
-                             </a></li>
+                             </a>
+                         </li>
+
+                         <li>
+                             <a class="link link-light link-light-75"
+                                 href="https://wa.me/{{ $settings->contact_phone }}?text=Bonjour" target="_blank">
+                                 <div class="d-flex">
+                                     <div class="flex-shrink-0">
+                                         <i class="bi-phone"></i>
+                                     </div>
+
+                                     <div class="flex-grow-1 ms-2">
+                                         <span>Whatsaap</span>
+                                     </div>
+                                 </div>
+                             </a>
+                         </li>
                      </ul>
                      <!-- End List -->
                  </div>
@@ -138,19 +155,16 @@
              <!-- End Row -->
          </div>
 
-         <div class="row align-items-md-center py-6 text-center text-md-start">
+         <div class="row align-items-md-center py-6">
              <div class="col-md mb-3 mb-md-0">
                  <!-- List -->
-                 <ul class="list-inline list-px-2 mb-0 justify-content-center justify-content-md-start">
-                     <li class="list-inline-item d-block d-md-inline">
-                         <a class="link link-light link-light-75" href="#">
-                             {{ $settings->site_name }} @ {{ date('Y') }} Tous droits réservés
-                         </a>
-                     </li>
+                 <ul class="list-inline list-px-2 mb-0">
+                     <li class="list-inline-item"><a class="link link-light link-light-75"
+                             href="#">{{ $settings->site_name }}@
+                             {{ date('Y') }} Tous drois réservés</a></li>
 
 
-
-                     <li class="list-inline-item d-block d-md-inline mt-2 mt-md-0">
+                     <li class="list-inline-item">
                          <!-- Button Group -->
                          <div class="btn-group">
                              <a class="link link-light link-light-75" href="#" id="selectLanguage"
@@ -159,7 +173,7 @@
                                      <img class="avatar avatar-xss avatar-circle me-2"
                                          src="{{ asset('img/flags/' . app()->getLocale() . '.png') }}" alt="Lang"
                                          width="16">
-                                     <span class="navbar-dropdown-menu-media-title text-capitalize">
+                                     <span class="navbar-dropdown-menu-media-title text-capitalize text-light">
                                          {{ app()->getLocale() === 'fr' ? 'Français' : 'English' }}
                                      </span>
                                  </span>
@@ -180,21 +194,16 @@
                                  </a>
                              </div>
                          </div>
-                         <!-- End Button Group -->
                      </li>
-
                  </ul>
              </div>
 
-             <div class="col-md-auto text-center text-md-end">
-                 <p class="fs-5 text-white-70 mb-0">
-                    
-                     Designed by <a style="color:orange" href="https://www.kivusoft.net" target="_blank">Kivusoft
-                         Technologies</a>
-                 </p>
+             <div class="col-md-auto">
+                 <p class="fs-5 text-white-70 mb-0">Designed by <a style="color:orange"
+                         href="https://www.kivusoft.net" target="_blank">Kivusoft Technologies</a></p>
              </div>
+             <!-- End Col -->
          </div>
-
          <!-- End Row -->
      </div>
  </footer>
@@ -240,6 +249,33 @@
              breakpoints: {
                  580: {
                      slidesPerView: 1
+                 },
+                 768: {
+                     slidesPerView: 2
+                 },
+                 1024: {
+                     slidesPerView: 3
+                 },
+             },
+             on: {
+                 'imagesReady': function(swiper) {
+                     const preloader = swiper.el.querySelector('.js-swiper-preloader')
+                     preloader.parentNode.removeChild(preloader)
+                 }
+             }
+         });
+
+         var swiper = new Swiper('.js-swiper-card-grid', {
+             navigation: {
+                 nextEl: '.js-swiper-card-grid-button-next',
+                 prevEl: '.js-swiper-card-grid-button-prev',
+             },
+             slidesPerView: 1,
+             spaceBetween: 30,
+             loop: 1,
+             breakpoints: {
+                 480: {
+                     slidesPerView: 2
                  },
                  768: {
                      slidesPerView: 2

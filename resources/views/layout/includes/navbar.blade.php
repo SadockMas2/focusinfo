@@ -30,9 +30,11 @@
                         <!-- Mega Menu -->
                         <div class="hs-sub-menu dropdown-menu" aria-labelledby="headerWithMegaMenuDropdown"
                             style="min-width: 12rem;">
-                            <a class="dropdown-item" href="{{ route('about') }}">{{__('messages.who_we_are')}}</a>
-                            <a class="dropdown-item" href="{{ route('about') }}#domaines-d-intervention">{{__('messages.domaines')}}</a>
+                            <a class="dropdown-item" href="{{ route('about') }}">{{ __('messages.who_we_are') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('about') }}#domaines-d-intervention">{{ __('messages.domaines') }}</a>
                             <a class="dropdown-item" href="{{ route('equipe') }}">Notre Equipe</a>
+                            <a class="dropdown-item" href="{{ route('about') }}#objectifs">Nos Objectifs</a>
                             <a class="dropdown-item" href="{{ route('about') }}#faqs">FAQs</a>
                         </div>
                         <!-- End Mega Menu -->

@@ -1,4 +1,4 @@
- <div class="overflow-hidden">
+ <div class="overflow-hidden" id="domaines-d-intervention">
      <div class="container border-top content-space-t-1 content-space-t-lg-2">
          <div class="row justify-content-lg-between">
              <div class="col-md-4 mb-5 mb-md-0">
@@ -88,55 +88,3 @@
 
 
 
-
- <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
- <script src="{{ asset('assets/js/theme.min.js') }}"></script>
- <script>
-     (function() {
-         new HSHeader('#header').init()
-
-         const megaMenu = new HSMegaMenu('.js-mega-menu', {
-             desktop: {
-                 position: 'left'
-             }
-         })
-
-
-         new HSGoTo('.js-go-to')
-
-
-         new HSTogglePassword('.js-toggle-password')
-
-         document.querySelectorAll('.js-video-bg').forEach(item => {
-             new HSVideoBg(item).init()
-         })
-
-
-         var swiper = new Swiper('.js-swiper-card-grid', {
-             navigation: {
-                 nextEl: '.js-swiper-card-grid-button-next',
-                 prevEl: '.js-swiper-card-grid-button-prev',
-             },
-             slidesPerView: 1,
-             spaceBetween: 30,
-             loop: 1,
-             breakpoints: {
-                 480: {
-                     slidesPerView: 2
-                 },
-                 768: {
-                     slidesPerView: 2
-                 },
-                 1024: {
-                     slidesPerView: 3
-                 },
-             },
-             on: {
-                 'imagesReady': function(swiper) {
-                     const preloader = swiper.el.querySelector('.js-swiper-preloader')
-                     preloader.parentNode.removeChild(preloader)
-                 }
-             }
-         });
-     })()
- </script>

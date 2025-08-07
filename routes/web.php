@@ -5,9 +5,12 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Counter;
 use App\Models\Slide;
+use App\Models\Product;
 use App\Models\Report;
 use App\Models\Domain;
 use App\Models\Benevole;
+use App\Models\PaymentMethod;
+use App\Models\Value;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -28,12 +31,14 @@ Route::get('/', function () {
     $slides = Slide::where('s_status', 'active')->get();
     $counters = Counter::get();
     $domains = Domain::get();
+    $valeurs=Value::paginate(4);
     $articles = Article::with('category')->with('author')->paginate(3);
-    return view('pages.home', compact('slides', 'counters', 'domains', 'articles'));
+    return view('pages.home', compact('slides', 'counters', 'domains', 'articles','valeurs'));
 })->name('acceuil');
 Route::get('/qui-sommes-nous', function () {
     $history = Slide::where('s_status', 'active')->get();
-    return view('pages.about', compact('history'));
+    $valeurs=Value::paginate(4);
+    return view('pages.about', compact('history','valeurs'));
 })->name('about');
 Route::get('/notre-histoire', function () {
     return view('pages.historique');
@@ -52,7 +57,9 @@ Route::get('/domaines-d-intervention', function () {
 })->name('services');
 
 Route::get('/nous-faire-un-don', function () {
-    return view('pages.donate');
+
+    $methodes=PaymentMethod::all();
+    return view('pages.donate', compact('methodes'));
 })->name('don');
 Route::get('/articles', function () {
     $categories = Category::all();
@@ -84,8 +91,8 @@ Route::get('/notre-equipe', function () {
 })->name('equipe');
 
 Route::get('/boutique', function () {
-    $articles = Report::paginate(10);
-    return view('pages.boutique', compact('articles'));
+    $produits = Product::paginate(10);
+    return view('pages.boutique', compact('produits'));
 })->name('boutique');
 
 Route::get('/article/{slug}', function (string $slug) {

@@ -1,9 +1,8 @@
 @extends('layout.base')
 @section('content')
 @section('title', 'Galerie Videos')
-@section('page_titlle', 'Galerie Videos')
 @section('active_page', 'Galerie Videos')
-@section('active_page_desc', 'Galerie Videos')
+@section('page_title', 'Nos Réalisations en Videos')
 @include('layout.partials.banner')
 
 <div style="height:100px"></div>
@@ -12,11 +11,11 @@
 <div class="container content-space-1 overflow-hidden">
     <!-- Heading -->
     <div class="w-lg-65 text-center mx-lg-auto mb-5 mb-sm-7 mb-lg-10">
-        <h2>The work we do,<br>and the people we help</h2>
+        <h2>Voici ce que nous vons deja réaliser en Videos</h2>
     </div>
     <!-- End Heading -->
 
-    <div class="row row-cols-1 row-cols-sm-2 gx-7">
+    {{-- <div class="row row-cols-1 row-cols-sm-2 gx-7">
         <div class="col mb-5">
             <!-- Card -->
             <a class="card card-ghost card-transition-zoom h-100" href="../portfolio-case-study.html">
@@ -114,12 +113,8 @@
             <!-- End Card -->
         </div>
         <!-- End Col -->
-    </div>
-    <!-- End Row -->
+    </div> --}}
 
-    <div class="text-center">
-        <a class="btn btn-white btn-pointer" href="../page-customer-stories.html">View all case studies</a>
-    </div>
 </div>
 <!-- End Card Grid -->
 
