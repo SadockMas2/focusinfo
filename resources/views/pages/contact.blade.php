@@ -5,108 +5,107 @@
 
 
 @section('content')
-    @include('layout.partials.banner')
-    @include('layout.partials.contact')
-    <div class="content-space-t-3 content-space-t-lg-4 content-space-b-2 content-space-b-lg-3 overflow-hidden">
-        <div class="container">
-            <div class="row justify-content-lg-between align-items-lg-center">
-                <div class="col-lg-5 mb-7 mb-lg-0">
-                    <div class="mb-6">
-                        <h1>Ecrivez-nous</h1>
-                        <p class="lead">Nous sommes disponible pour repondre a tous vos messages</p>
-                    </div>
 
-
-                    <div style="width: 100%; height: 450px; overflow: hidden; border-radius: 8px;">
-                        <iframe src="{{ $settings->maps }}" width="100%" height="100%" style="border: 0" allowfullscreen=""
-                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    <!-- End Row -->
+    <div id="wrapper">
+        <!-- content    -->
+        <div class="content">
+            <!--section   -->
+            <section class="hero-section">
+                <div class="bg-wrap hero-section_bg">
+                    <div class="bg" data-bg="images/bg/8.jpg"></div>
                 </div>
-                <!-- End Col -->
-
-                <div class="col-lg-6">
-                    <div class="position-relative">
-                        <!-- Card -->
-                        <div class="card card-lg">
-                            <div class="card-body">
-                                <h4>Ecrivez-nous</h4>
-
-                                <!-- Form -->
-                                <form id="contact-form" action="{{ route('contact.store') }}" method="post">
-                                    <div class="mb-3">
-                                        <label class="form-label visually-hidden" for="hireUsFormFirstName">Noms</label>
-                                        <input type="text" class="form-control form-control-lg" name="noms"
-                                            id="hireUsFormFirstName" placeholder="Noms" aria-label="Noms">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label visually-hidden" for="hireUsFormWorkEmail">Email</label>
-                                        <input type="text" class="form-control form-control-lg" name="email"
-                                            id="hireUsFormWorkEmail" placeholder="Email" aria-label="Email">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label visually-hidden"
-                                            for="hireUsFormWorkEmail">Téléphone</label>
-                                        <input type="text" class="form-control form-control-lg" name="phonenumber"
-                                            id="hireUsFormWorkEmail" placeholder="Téléphone" aria-label="Email">
-                                    </div>
-                                    <!-- End Form -->
-
-
-                                    <div class="mb-3">
-                                        <label class="form-label visually-hidden" for="hireUsFormDetails">Message</label>
-                                        <textarea class="form-control form-control-lg" name="message" id="hireUsFormDetails" placeholder="Message ..."
-                                            aria-label="Message ..." rows="4"></textarea>
-                                    </div>
-                                    <!-- End Form -->
-
-
-
-                                    <div class="d-grid mb-2">
-                                        <button type="submit" class="btn btn-primary btn-lg">Envoyer le Message</button>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <span class="form-text">Nous répondons dans le plus bref delai</span>
-                                    </div>
-                                </form>
-                                <!-- End Form -->
-                            </div>
+                <div class="container">
+                    <div class="hero-section_title">
+                        <h2>Contactez-nous</h2>
+                        <h1> <a href="/">Acceuil /</a> <span>Contact</span></h1>
+                    </div>
+{{--                  
+                    <div class="scroll-down-wrap scw_transparent">
+                        <div class="mousey">
+                            <div class="scroller"></div>
                         </div>
-                        <!-- End Card -->
+                        <span>Scroll Down To Discover</span>
+                    </div> --}}
+                </div>
 
-                        <!-- SVG Shape -->
-                        <figure class="position-absolute top-0 end-0 d-none d-md-block mt-n10"
-                            style="width: 12rem; margin-right: -10rem;">
-                            <img class="img-fluid" src="{{ asset('assets/svg/components/three-arrows-1.svg') }}"
-                                alt="Image Description">
-                        </figure>
-                        <!-- End SVG Shape -->
+            </section>
+            <!-- section end  -->
+            <!--section   -->
+            <section>
+                <div class="container">
+                    <div class="pr-subtitle prs_big">Avez-vous une question ?</div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="pad-con fl-wrap">
+                               <div class="pr-subtitle br">
+                                    Laissez-nous un message
+                                    <p>
+                                        Nous sommes à votre disposition pour répondre à toutes vos questions ou préoccupations.
+                                        N'hésitez pas à nous laisser un message et nous vous répondrons dans les plus brefs délais.
+                                        Votre satisfaction est notre priorité
+                                    </p>
+                                </div>
 
-                        <!-- SVG Shape -->
-                        <figure class="position-absolute bottom-0 end-0 zi-n1 d-none d-md-block mb-n10"
-                            style="width: 15rem; margin-right: -8rem;">
-                            <img class="img-fluid" src="{{ asset('assets/svg/illustrations/grid-grey.svg') }}"
-                                alt="Image Description">
-                        </figure>
-                        <!-- End SVG Shape -->
+    
+                                    <div id="contact-form" style="margin-top: 20px;">
+                                        <div id="message"></div>
+                                            <form class="custom-form" action="php/contact.php" name="contactform" id="contactform">
+                                                <fieldset>
+                                                    <input type="text" name="name" id="name" placeholder="Votre nom complet *"
+                                                        value="" />
+                                                    <input type="text" name="email" id="email" placeholder="Votre adresse mail*"
+                                                    value="" />
+                                                    <textarea name="comments" id="comments" cols="40" rows="3" placeholder="Message:"></textarea>
+                                                </fieldset>
+                                                    <button class="btn   color-bg float-btn" id="submit">Envoyez le message<i
+                                                    class="fas fa-caret-right"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <!-- contact form  end-->
 
-                        <!-- SVG Shape -->
-                        <figure class="position-absolute bottom-0 end-0 d-none d-md-block me-n5 mb-n5"
-                            style="width: 10rem;">
-                            <img class="img-fluid" src="{{ asset('assets/svg/illustrations/plane.svg') }}"
-                                alt="Image Description">
-                        </figure>
-                        <!-- End SVG Shape -->
+
+
+                        <div class="col-md-4">
+                            <div class="pr-subtitle br">Details du contact</div>
+                            <!--card-item -->
+                            <ul class="contacts-list fl-wrap">
+                                <li><span><i class="fal fa-phone"></i> Assistance tétéphonique  :</span> <a style="color:blue;" href="#">+243 998 258 517</a>
+                                </li>
+                                <li><span><i class="fal fa-envelope"></i> Email de support :</span> <a style="color:blue;" href="mukengerej@gmail.com">mukengerej@gmail.com</a></li>
+                                
+                                <li><span><i class="fal fa-clock"></i> Heures de contact :</span> <a style="color:blue;"
+                                        href="#">Lun-Dim : 24 heures</a></li>
+                            </ul>
+                            <!--card-item end -->
+                            <div class="contact-social fl-wrap">
+                                <span style="font-size: 16px;" class="cs-title">Trouvez-nous sur: </span>
+                                <ul>
+                                  <li><a href="{{ $settings->facebook ?? '#' }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="{{ $settings->twitter ?? '#' }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="{{ $settings->instagram ?? '#' }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="{{ $settings->linkedin ?? '#' }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- box-widget -->
+                            {{-- <div class="box-widget-content fl-wrap">
+                                <div class="banner-widget fl-wrap">
+                                    <div class="bg-wrap bg-parallax-wrap-gradien">
+                                        <div class="bg  " data-bg="images/bg/6.jpg"></div>
+                                    </div>
+                                    <div class="banner-widget_content">
+                                        <h5>Visit our awesome merch and souvenir online shop.</h5>
+                                        <a href="#" class="btn float-btn color-bg small-btn">Our shop</a>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            <!-- box-widget  end -->
+                        </div>
+                        
                     </div>
                 </div>
-                <!-- End Col -->
-            </div>
-            <!-- End Row -->
+            </section>
         </div>
-    </div>
 
-
-@endsection
+    @endsection

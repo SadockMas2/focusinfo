@@ -7,5 +7,27 @@
 @include('layout.partials.banner')
 <div style="height:100px"></div>
 
+@section('content')
 
-@endsection
+    <div id="wrapper">
+        <!-- content    -->
+        <div class="content">
+            <!--section   -->
+            <section class="hero-section">
+                <div class="bg-wrap hero-section_bg">
+                    <div class="bg" data-bg="images/bg/8.jpg"></div>
+                </div>
+                <div class="container">
+                    <div class="hero-section_title">
+                        <h2>Contactez-nous</h2>
+                        <h1> <a href="/">Acceuil /</a> <span>Photos</span></h1>
+                    </div>
+            </section>
+            <!-- section end  -->
+
+
+            <!--section   -->
+            
+        </div>
+
+    @endsection

@@ -28,7 +28,8 @@ Route::get('/lang/{locale}', function ($locale) {
 
 
 Route::get('/', function () {
-    $slides = Slide::where('s_status', 'active')->get();
+    $slides = Article::with('category')->with('author')->paginate(10);
+    // Slide::where('s_status', 'active')->get();
     $counters = Counter::get();
     $domains = Domain::get();
     $valeurs=Value::paginate(4);
@@ -56,6 +57,11 @@ Route::get('/domaines-d-intervention', function () {
     return view('pages.services');
 })->name('services');
 
+Route::get('/domaines/{id}', function (int $id) {
+    $domaine = Domain::where('id', $id)->firstOrFail();
+   return view('pages.domaines_details', compact('domaine'));
+})->name('domaines_details');
+
 Route::get('/nous-faire-un-don', function () {
 
     $methodes=PaymentMethod::all();
@@ -66,6 +72,25 @@ Route::get('/articles', function () {
     $articles = Article::with('category')->with('author')->paginate(12);
     return view('pages.blog', compact('articles', 'categories'));
 })->name('blog');
+
+Route::get('/categories', function () {
+    $categories = Category::all();
+    $articles = Article::with('category')->with('author')->paginate(12);
+    return view('pages.blog', compact('articles', 'categories'));
+})->name('categories.show');
+
+
+Route::get('/recherche', function () {
+    $categories = Category::all();
+    $articles = Article::with('category')->with('author')->paginate(12);
+    return view('pages.blog', compact('articles', 'categories'));
+})->name('articles.search');
+
+Route::get('/authors', function () {
+    $categories = Category::all();
+    $articles = Article::with('category')->with('author')->paginate(12);
+    return view('pages.blog', compact('articles', 'categories'));
+})->name('authors.show');
 
 
 Route::get('/nos-rapports', function () {

@@ -24,7 +24,7 @@
                              @foreach ($domains as $domaine)
                                  <div class="swiper-slide pt-4 pb-8">
                                      <!-- Card -->
-                                     <a class="card card-transition" href="#">
+                                     <a class="card card-transition" href="{{ route('domaines_details', $domaine->id) }}">
                                          <div class="card-pinned">
                                              <img class="card-img-top" src="{{ asset('storage/' . $domaine->image) }}"
                                                  style="height:250px; object-fit:cover" alt="Image Description">

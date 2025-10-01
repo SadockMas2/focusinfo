@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Benevole;
+use App\Models\Category;
 use App\Models\Domain;
 use App\Models\Setting;
 use App\Models\Value;
@@ -35,9 +36,11 @@ class AppServiceProvider extends ServiceProvider
             $counters = Counter::get();
             $faqs = Faq::get();
             $values = Value::get();
+            $categories = Category::get();
             $benevoles = Benevole::where('status', 'active')->paginate(6);
             View::share([
                 'benevoles' => $benevoles,
+                'categories'=>$categories,
                 'settings' => $settings,
                 'domains' => $domains,
                 'partners' => $partners,
