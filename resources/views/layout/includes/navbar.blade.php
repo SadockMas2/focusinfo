@@ -46,14 +46,20 @@
                         <div class="search_btn htact show_search-btn"><i class="far fa-search"></i> <span class="header-tooltip">Search</span></div>
                         {{-- <div class="srf_btn htact show-reg-form"><i class="fal fa-user"></i> <span class="header-tooltip">Sign In</span></div> --}}
                         <!-- header-search-wrap -->
-                        <div class="header-search-wrap novis_sarch">
-                            <div class="widget-inner">
-                                <form action="#">
-                                    <input name="se" id="se" type="text" class="search" placeholder="Search..." value="" />
-                                    <button class="search-submit" id="submit_btn"><i class="fa fa-search transition"></i> </button>
-                                </form>
-                            </div>
-                        </div>
+            <div class="header-search-wrap novis_sarch">
+                <div class="widget-inner">
+                    <form action="{{ route('blog.search') }}" method="GET">
+                        <input name="query" id="se" type="text" class="search" placeholder="Search..." value="{{ request('query') }}" />
+                        @if(isset($category))
+                            <input type="hidden" name="category_id" value="{{ $category->id }}">
+                        @endif
+                        <button type="submit" class="search-submit" id="submit_btn">
+                            <i class="fa fa-search transition"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
                            <div class="nav-button-wrap">
                             <div class="nav-button">
                                 <span></span><span></span><span></span>
@@ -61,36 +67,50 @@
                         </div>
                         <!-- nav-button-wrap end-->
                         <!--  navigation -->
-                        <div class="nav-holder main-menu">
+                       <div class="nav-holder main-menu">
                             <nav>
                                 <ul>
-                                    <li><a href="{{ '/' }}">Acceuil</a></li>
                                     <li>
-                                        <a href="#">Catégories<i class="fas fa-caret-down"></i></a>
-                                        <!--second level -->
-                                        <ul>
-                                            @foreach ($categories as $category)
+                                        <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+                                            Accueil
+                                        </a>
+                                    </li>
 
-                                            <li><a href="#">{{ $category->name }}</a></li>
+                                    <li>
+                                        <a href="#">Catégories <i class="fas fa-caret-down"></i></a>
+                                        <ul>
+                                            @foreach($categories as $cat)
+                                            
+                                                <li><a href="{{ route('blog.category', $cat) }}">{{ $cat->name }}</a></li>
                                             @endforeach
                                         </ul>
+
                                     </li>
-                                    <li><a href="{{ route('blog') }}">Actualites</a></li>
 
                                     <li>
-                                        <a href="#">Galeries<i class="fas fa-caret-down"></i></a>
-                                        <!--second level -->
-                                        <ul>
-                                            <li><a href="galerie">Photos</a></li>
-                                            <li><a href="video">Videos</a></li>
-                                        </ul>
-                                        <!--second level end-->
+                                        <a href="{{ route('blog') }}" class="{{ request()->is('blog') ? 'active' : '' }}">
+                                            Actualités
+                                        </a>
                                     </li>
-                                    <li><a href="{{ route('contact') }}">Contact</a></li>
+
+                                    <li>
+                                        <a href="#">Galeries <i class="fas fa-caret-down"></i></a>
+                                        <ul>
+                                            <li><a href="{{ url('galerie') }}" class="{{ request()->is('galerie') ? 'active' : '' }}">Photos</a></li>
+                                            <li><a href="{{ url('video') }}" class="{{ request()->is('video') ? 'active' : '' }}">Vidéos</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('contact') }}" class="{{ request()->is('contact') ? 'active' : '' }}">
+                                            Contact
+                                        </a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
-                        <!-- navigation  end -->
+
+                                                <!-- navigation  end -->
                     </div>
                 </div>
             </header>

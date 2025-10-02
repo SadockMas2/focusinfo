@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BlogController;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Counter;
@@ -129,4 +130,10 @@ Route::get('/article/{slug}', function (string $slug) {
 Route::get('telecharger/{filename}', function ($filename) {
     return response()->download($filename);
 })->name('downaload');
+
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog/category/{category}', [BlogController::class, 'byCategory'])->name('blog.category');
+Route::get('/blog/search', [BlogController::class, 'search'])->name('blog.search');
+
 

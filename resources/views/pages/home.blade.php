@@ -7,6 +7,19 @@
             <!-- hero-slider-wrap     -->
             @include('layout.partials.slider')
 
+            @if(isset($query) && $query)
+                <div class="section-title sect_dec">
+                    <h2>Résultats pour : "{{ $query }}"</h2>
+                    @if(isset($category))
+                        <h4>dans la catégorie : {{ $category->name }}</h4>
+                    @endif
+                </div>
+            @endif
+
+            @if($articles->isEmpty())
+                <p>Aucun article trouvé pour cette recherche.</p>
+            @endif
+
             <section>
                 <div class="container">
                     <div class="section-title sect_dec">
@@ -17,11 +30,17 @@
                         <div class="col-md-5">
                             @php
 
-                                // Récupérer l'article le plus lu de la semaine
-$mostViewedArticleThisWeek = \App\Models\Article::published()
-    ->where('published_at', '>=', now()->subWeek())
-    ->orderBy('view_count', 'desc')
+                                $mostViewedArticleThisWeekQuery = \App\Models\Article::published()
+                                    ->where('published_at', '>=', now()->subWeek());
+
+                                if(isset($category)) {
+                                    $mostViewedArticleThisWeekQuery->where('category_id', $category->id);
+                                }
+
+                                $mostViewedArticleThisWeek = $mostViewedArticleThisWeekQuery
+                                    ->orderBy('view_count', 'desc')
                                     ->first();
+
                             @endphp
 
                             @if ($mostViewedArticleThisWeek)
@@ -80,28 +99,18 @@ $mostViewedArticleThisWeek = \App\Models\Article::published()
                                 <div class="picker-wrap fl-wrap">
                                     <div class="list-post-wrap fl-wrap">
                                         @php
-                                            // Récupérer les articles populaires par catégorie pour la semaine
-                                            $categories = \App\Models\Category::with([
-                                                'articles' => function ($query) {
-                                                    $query
-                                                        ->published()
-                                                        ->where('published_at', '>=', now()->subWeek())
-                                                        ->orderBy('view_count', 'desc');
-                                                },
-                                            ])->get();
+                                           // Récupérer les articles populaires de la semaine, filtrés si une catégorie est sélectionnée
+                                            $weeklyPopularArticlesQuery = \App\Models\Article::published()
+                                                ->where('published_at', '>=', now()->subWeek());
 
-                                            $weeklyPopularArticles = [];
-
-                                            foreach ($categories as $category) {
-                                                if ($category->articles->isNotEmpty()) {
-                                                    $weeklyPopularArticles[] = $category->articles->first();
-                                                }
+                                            if(isset($category)) {
+                                                $weeklyPopularArticlesQuery->where('category_id', $category->id);
                                             }
 
-                                            // Trier et limiter
-                                            $weeklyPopularArticles = collect($weeklyPopularArticles)
-                                                ->sortByDesc('view_count')
-                                                ->take(4);
+                                            $weeklyPopularArticles = $weeklyPopularArticlesQuery
+                                                ->orderBy('view_count', 'desc')
+                                                ->take(4)
+                                                ->get();
 
                                         @endphp
 
@@ -157,6 +166,16 @@ $mostViewedArticleThisWeek = \App\Models\Article::published()
             </section>
             <!-- section end -->
             <!-- section -->
+
+            {{-- @if(isset($category))
+                <h2>Articles dans la catégorie : {{ $category->name }}</h2>
+            @else
+                <h2>Tous les articles</h2>
+            @endif --}}
+
+
+
+
             <section class="no-padding">
                 <div class="fs-carousel-wrap">
                     <div class="fs-carousel-wrap_title">
@@ -185,7 +204,7 @@ $mostViewedArticleThisWeek = \App\Models\Article::published()
                                                     </a>
                                                 </div>
                                                 <div class="grid-post-media_title">
-                                                    <a class="post-category-marker" href="#">
+                                                    <a class="post-category-marker" href="{{ route('blog.category', $article->category->id) }}">
                                                         {{ $article->category->name ?? 'Non catégorisé' }}
                                                     </a>
                                                     <h4>

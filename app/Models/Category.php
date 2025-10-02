@@ -18,10 +18,12 @@ class Category extends Model
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
     public function articles()
     {
         return $this->hasMany(Article::class);
     }
+
+
 }

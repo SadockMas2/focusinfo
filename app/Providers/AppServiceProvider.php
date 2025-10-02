@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             $counters = Counter::get();
             $faqs = Faq::get();
             $values = Value::get();
-            $categories = Category::get();
+           $categories = Category::select('id','name')->get();
             $benevoles = Benevole::where('status', 'active')->paginate(6);
             View::share([
                 'benevoles' => $benevoles,
