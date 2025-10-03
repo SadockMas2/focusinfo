@@ -54,252 +54,509 @@
 
 
 @section('content')
+    <div id="wrapper">
+        <!-- content    -->
+        <div class="content">
+            <!--section   -->
+            <section class="hero-section">
+                <div class="bg-wrap hero-section_bg">
+                    <div class="bg" data-bg="{{ asset('storage/' . $article->featured_image) }}"></div>
+                </div>
 
-{{-- <div style="height:50px"></div> --}}
-    <div class="bg-gradient-to-bottom-sm-light m-2" style="padding-top:30px">
-        <div class="container">
-            <div class="row justify-content-lg-center">
-                <div class="col-lg-8">
-                    <!-- Media -->
-                    <div class="d-flex align-items-center mb-4">
-                        <div class="flex-shrink-0">
-                            <img class="avatar avatar-circle" src="{{ asset('storage/' . $article->author->avatar) }}"
-                                alt="Image Description">
+                <div class="container">
+                    <div class="hero-section_title hs_single-post">
+                        <a class="post-category-marker color-bg" href="#">{{ $article->category->name ?? 'Technology' }}</a>
+                        <span class="post-date"><i class="far fa-clock"></i>
+                            {{ $article->created_at->format('d F Y') }}</span>
+                        <div class="clearfix"></div>
+
+                        {{-- <h2>{{ $article->title }}</h2> --}}
+
+                        <h5>{{ $article->excerpt ?? 'Pas de description' }}</h5>
+                        <div class="author-link">
+                            <a href="#">
+                                <img src="{{ asset('storage/' . $article->author->avatar) }}" alt="">
+                                <span>By {{ $article->author->name ?? 'Auteur inconnu' }}</span>
+                            </a>
                         </div>
 
-                        <div class="flex-grow-1 ms-3">
-                            <h6 class="mb-0">
-                                <a class="link link-dark" href="#">{{ $article->author->name }}</a>
-                            </h6>
-                            <span class="d-block fs-5 text-muted">{{ $article->created_at->diffForHumans() }}</span>
 
-                        </div>
+                        <ul class="post-opt">
+                            <li><i class="far fa-comments-alt"></i> {{ $article->comments->count() }} </li>
+                            <li><i class="fal fa-eye"></i> {{ $article->views ?? 0 }} </li>
+                        </ul>
                     </div>
-                    <!-- End Media -->
-                    <div class="mb-6">
-                        <h1 class="h2">{{ $article->title }}</h1>
-                    </div>
-                    <div class="row justify-content-lg-center">
-                        <div class="col-lg-10">
-                            <img class="img-fluid" src="{{ asset('storage/' . $article->featured_image) }}"
-                                alt="Image Description">
+
+                    <div class="clearfix"></div>
+                    <div class="scroll-down-wrap scw_transparent">
+                        <div class="mousey">
+                            <div class="scroller"></div>
                         </div>
-                        <!-- End Col -->
+                        <span>Faites défiler vers le bas pour découvrir</span>
                     </div>
                 </div>
-                <!-- End Col -->
+            </section>
+            <!-- section end  -->
+            <div class="breadcrumbs-section fl-wrap">
+                <div class="container">
+                    <div class="breadcrumbs-header_url">
+                        <a href="\">Accueil</a><span>Style de liste de blogs</span>
+                    </div>
+                    <div class="share-holder hor-share">
+                        <div class="share-title">Partagez:</div>
+                        <div class="share-container  isShare"></div>
+                    </div>
+                </div>
+                <div class="pwh_bg"></div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row mb-5">
-            {!! $article->content !!}
-        </div>
-
-    </div>
-    <hr>
-
-    <div class="container content-space-b-2 content-space-b-lg-3">
-        <!-- Heading -->
-        <div class="w-lg-65 text-center mx-lg-auto mb-7">
-            <h3>Articles Similaires</h3>
-        </div>
-        <!-- End Heading -->
-
-        <div class="row">
-
-            @foreach ($articles as $article)
-                <div class="col-sm-6 col-md-4 mb-5 mb-md-0">
-                    <!-- Card -->
-                    <a class="card card-ghost card-transition-zoom h-100"
-                        href="{{ route('blog_detail', $article->slug) }}">
-                        <div class="card-transition-zoom-item">
-                            <img class="card-img" src="{{ asset('storage/' . $article->featured_image) }}"
-                                style="height: 200px; object-fit: cover;" alt="Image Description">
-                        </div>
-
-                        <div class="card-body">
-                            <h4>{{ Str::limit($article->title, 40, '...') }}</h4>
-                            {{-- <p class="card-text">Create an immersive attendee experience with interactive programming for
-                                both
-                                digital and onsite audiences</p> --}}
-                        </div>
-
-                        <div class="card-footer">
-                            <span class="card-link">Lire plus</span>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-            @endforeach
-
-        </div>
-        <!-- End Row -->
-    </div>
-
-
-    <!-- Comment -->
-    <div class="container content-space-2 content-space-lg-3 d-none">
-        <!-- Heading -->
-        <div class="w-lg-65 text-center mx-lg-auto mb-7">
-            <h3>3 comments</h3>
-        </div>
-        <!-- End Heading -->
-
-        <div class="row justify-content-lg-center">
-            <div class="col-lg-8">
-                <!-- Comment -->
-                <ul class="list-comment">
-                    <!-- Item -->
-                    <li class="list-comment-item">
-                        <!-- Media -->
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="flex-shrink-0">
-                                <img class="avatar avatar-circle" src="assets/img/160x160/img3.jpg" alt="Image Description">
-                            </div>
-
-                            <div class="flex-grow-1 ms-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6>Dave Austin</h6>
-                                    <span class="d-block small text-muted">1 day ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Media -->
-
-                        <p>As a Special Education teacher this resonates so well with me. Fighting with gen ed teachers to
-                            flatten for the students with learning disabilities. It also confirms some things for me in my
-                            writing.</p>
-
-                        <a class="link" href="#">Reply</a>
-
-                        <!-- Comment -->
-                        <ul class="list-comment">
-                            <!-- Item -->
-                            <li class="list-comment-item">
-                                <!-- Media -->
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="flex-shrink-0">
-                                        <img class="avatar avatar-circle" src="assets/img/160x160/img10.jpg"
-                                            alt="Image Description">
+            <!--section   -->
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="main-container fl-wrap fix-container-init">
+                                <div class="single-post-content  fl-wrap">
+                                    <div class="fs-wrap smpar fl-wrap">
+                                        <div class="fontSize"><span class="fs_title">Taille </span><input type="text"
+                                                class="rage-slider" data-step="1" data-min="14" data-max="18" value="14">
+                                        </div>
+                                        <div class="show-more-snopt smact"><i class="fal fa-ellipsis-v"></i></div>
+                                        <div class="show-more-snopt-tooltip">
+                                            <a href="#comments" class="custom-scroll-link"> <i
+                                                    class="fas fa-comment-alt"></i> Commentez</a>
+                                            <a href="#"> <i class="fas fa-exclamation-triangle"></i> Signaler </a>
+                                        </div>
+                                        <a class="print-btn" href="javascript:window.print()"
+                                            data-microtip-position="bottom"><span>Imprimer</span><i
+                                                class="fal fa-print"></i></a>
                                     </div>
-
-                                    <div class="flex-grow-1 ms-3">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h6>Louise Donadieu</h6>
-                                            <span class="d-block small text-muted">1 day ago</span>
+                                    <div class="clearfix"></div>
+                                    <div class="single-post-content_text" id="font_chage">
+                                        {!! $article->content !!}
+                                    </div>
+                                    <div class="single-post-footer fl-wrap">
+                                        <div class="post-single-tags">
+                                            <span class="tags-title"><i class="fas fa-tag"></i> Mots-clés : </span>
+                                            <div class="tags-widget">
+                                                <a href="#">Science</a>
+                                                <a href="#">Technologie</a>
+                                                <a href="#">Business</a>
+                                                <a href="#">style de vie</a>
+                                            </div>
                                         </div>
                                     </div>
+                                    <br>
+                                    
+                                    <!-- single-post-nav"   -->
+                                    
+                                    @if(isset($prev) && $prev)
+                                    <a href="{{ route('blog_detail', $prev->slug) }}" class="single-post-nav_prev spn_box">
+                                        <div class="spn_box_img">
+                                            <img src="{{ $article->featured_image ?? 'default-image.jpg' }}" alt="">
+
+                                        </div>
+                                        <div class="spn-box-content">
+                                            <span class="spn-box-content_subtitle"><i class="fas fa-caret-left"></i> Article Précédent</span>
+                                            <span class="spn-box-content_title">{{ $prev->title }}</span>
+                                        </div>
+                                    </a>
+                                    @endif
+
+                                    @if(isset($next) && $next)
+                                    <a href="{{ route('blog_detail', $next->slug) }}" class="single-post-nav_next spn_box">
+                                        <div class="spn_box_img">
+                                          <img src="{{ $article->featured_image ?? 'default-image.jpg' }}" alt="">
+
+                                        </div>
+                                        <div class="spn-box-content">
+                                            <span class="spn-box-content_subtitle">Article Suivant <i class="fas fa-caret-right"></i></span>
+                                            <span class="spn-box-content_title">{{ $next->title }}</span>
+                                        </div>
+                                    </a>
+                                    @endif
+
+
+                                    <!-- single-post-nav"  end   -->
                                 </div>
-                                <!-- End Media -->
-
-                                <p>Love it Dave! We're all about keeping it up.</p>
-
-                                <a class="link" href="#">Reply</a>
-                            </li>
-                            <!-- End Item -->
-                        </ul>
-                        <!-- End Comment -->
-                    </li>
-                    <!-- End Item -->
-
-                    <!-- Item -->
-                    <li class="list-comment-item">
-                        <!-- Media -->
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="flex-shrink-0">
-                                <img class="avatar avatar-circle" src="assets/img/160x160/img8.jpg"
-                                    alt="Image Description">
-                            </div>
-
-                            <div class="flex-grow-1 ms-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6>Hanna Wolfe</h6>
-                                    <span class="d-block small text-muted">2 days ago</span>
-                                </div>
+                                <br>
+                                
+                             
+                                <h2 style="margin-bottom:20px; text-align: center; color:rgb(39, 10, 10); font-size:16px; font-family:'Times New Roman', Times, serif,bold ;"> ARTICLES CONNEXES</h2>
+                                <div class="fs-carousel fl-wrap">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                @foreach($articles as $article)
+                                    <div class="swiper-slide">
+                                        <div class="grid-post-item bold_gpi fl-wrap">
+                                            <div class="grid-post-media gpm_sing">
+                                                <div class="bg" data-bg="{{ asset('storage/' . $article->featured_image) }}"></div>
+                                                <div class="author-link">
+                                                    <a href="#">
+                                                        <img src="{{ asset('storage/' . $article->author->avatar) }}" alt="">
+                                                        <span>By {{ $article->author->name ?? 'Auteur inconnu' }}</span>
+                                                    </a>
+                                                </div>
+                                                <div class="grid-post-media_title">
+                                                    <a class="post-category-marker" href="{{ route('blog.category', $article->category->id) }}">
+                                                        {{ $article->category->name ?? 'Non catégorisé' }}
+                                                    </a>
+                                                    <h4>
+                                                        <a href="{{ route('blog_detail', $article->slug) }}">
+                                                            {{ $article->title }}
+                                                        </a>
+                                                    </h4>
+                                                    <span class="video-date">
+                                                        <i class="far fa-clock"></i> {{ $article->published_at->format('d M Y') }}
+                                                    </span>
+                                                    <ul class="post-opt">
+                                                        <li><i class="far fa-comments-alt"></i> {{ $article->comments->count() }} </li>
+                                                        <li><i class="fal fa-eye"></i> {{ $article->view_count }}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                        <!-- End Media -->
-
-                        <p>Since our attention spans seem to be shrinking by the day — keeping it simple is more important
-                            than ever.</p>
-
-                        <a class="link" href="#">Reply</a>
-                    </li>
-                    <!-- End Item -->
-                </ul>
-                <!-- End Comment -->
-            </div>
-            <!-- End Col -->
-        </div>
-        <!-- End Row -->
-    </div>
-    <!-- End Comment -->
-
-    <div class="container">
-        <!-- Titre -->
-        <div class="w-lg-65 text-center mx-lg-auto mb-7">
-            <h3>Laisser un commentaire</h3>
-        </div>
-        <!-- Fin Titre -->
-
-        <div class="row justify-content-lg-center">
-            <div class="col-lg-8">
-                <!-- Carte -->
-                <div class="card card-lg card-bordered shadow-none">
-                    <div class="card-body">
-                        <form>
-                            <div class="d-grid gap-4">
-                                <!-- Formulaire -->
-                                <div class="row">
-                                    <div class="col-sm-6 mb-4 mb-sm-0">
-                                        <label class="form-label" for="blogContactsFormFirstName">Prénom</label>
-                                        <input type="text" class="form-control" name="blogContactsFirstName"
-                                            id="blogContactsFormFirstName" placeholder="Prénom" aria-label="Prénom">
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label class="form-label" for="blogContactsFormLastName">Nom</label>
-                                        <input type="text" class="form-control" name="blogContactsLastName"
-                                            id="blogContactsFormLastName" placeholder="Nom" aria-label="Nom">
-                                    </div>
-                                </div>
-                                <!-- Fin Formulaire -->
-
-                                <!-- Formulaire -->
-                                <span class="d-block">
-                                    <label class="form-label" for="blogContactsFormEmail">Votre adresse e-mail</label>
-                                    <input type="email" class="form-control" name="blogContactsEmailName"
-                                        id="blogContactsFormEmail" placeholder="email@exemple.com"
-                                        aria-label="email@exemple.com">
-                                </span>
-                                <!-- Fin Formulaire -->
-
-                                <!-- Formulaire -->
-                                <span class="d-block">
-                                    <label class="form-label" for="blogContactsFormComment">Commentaire</label>
-                                    <textarea class="form-control" id="blogContactsFormComment" name="blogContactsCommentName"
-                                        placeholder="Laissez votre commentaire ici..." aria-label="Laissez votre commentaire ici..." rows="5"></textarea>
-                                </span>
-                                <!-- Fin Formulaire -->
-
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
+                      
+                       {{-- <!-- Formulaire pour ajouter un commentaire -->
+<div id="addcom" class="clearafix">
+    <div class="pr-subtitle">Commentez <i class="fas fa-caret-down"></i></div>
+    <div class="comment-reply-form fl-wrap">
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        <form action="{{ route('comment.store', $article->id) }}" method="POST">
+            @csrf
+            <div class="row">
+                @guest
+                <div class="col-md-6">
+                    <input type="text" name="name" placeholder="Your Name *" required>
                 </div>
-                <!-- Fin Carte -->
+                <div class="col-md-6">
+                    <input type="email" name="email" placeholder="Email Address *" required>
+                </div>
+                @endguest
             </div>
-            <!-- Fin Col -->
-        </div>
-        <!-- Fin Row -->
+            <textarea name="content" placeholder="Your Comment:" required></textarea>
+            <button class="btn float-btn color-btn">Submit Comment</button>
+        </form>
     </div>
+</div>
 
-    <div style="height:100px"></div>
+<!-- Liste des commentaires -->
+<div class="pr-subtitle prs_big">Commentaires ({{ $article->comments->count() }})</div>
+<ul class="commentlist clearafix">
+    @forelse($article->comments as $comment)
+        <li class="comment">
+            <div class="comment-author">
+                <img src="{{ asset('images/avatar/default.png') }}" width="50" height="50">
+            </div>
+            <div class="comment-body smpar">
+                <h4>{{ $comment->name }}</h4>
+                <p>{{ $comment->content }}</p>
+                <div class="comment-meta">
+                    <i class="far fa-clock"></i> {{ $comment->created_at->format('d M Y H:i') }}
+                </div>
+            </div>
+        </li>
+    @empty
+        <li>Aucun commentaire pour l'instant.</li>
+    @endforelse
+</ul> --}}
 
-    @include('layout.partials.newsletter')
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- sidebar   -->
+                            <div class="sidebar-content fl-wrap fixed-bar">
+                                <!-- box-widget -->
+                                 <div class="header-search-wrap novis_sarch">
+                                    <div class="widget-inner">
+                                        <form action="{{ route('blog.search') }}" method="GET">
+                                            <input name="query" id="se" type="text" class="search" placeholder="Search..." value="{{ request('query') }}" />
+                                            @if(isset($category))
+                                                <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                            @endif
+                                            <button type="submit" class="search-submit" id="submit_btn">
+                                                <i class="fa fa-search transition"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                                <!-- box-widget  end -->
+            @foreach(\App\Models\Category::all() as $category)
+                <a href="{{ route('category.articles', $category->id) }}" class="sb-categories_bg_item">
+                    <div class="bg-wrap">
+                        <div class="bg" data-bg="{{ asset($category->image ?? 'images/default.jpg') }}"></div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="spb-categories_title">
+                        <span>{{ sprintf('%02d', $loop->iteration) }}</span>{{ $category->name }}
+                    </div>
+                    <div class="spb-categories_counter">{{ $category->articles()->count() }}</div>
+                </a>
+            @endforeach
 
 
+
+{{--                               
+                                <div class="box-widget fl-wrap">
+                                    <div class="box-widget-content">
+                                        <div class="single-grid-slider slider_widget">
+                                            <div class="slider_widget_title">Editor's Choice</div>
+                                            <div class="swiper-container">
+                                                <div class="swiper-wrapper">
+                                                    <!-- swiper-slide-->
+                                                    <div class="swiper-slide">
+                                                        <div class="grid-post-item     fl-wrap">
+                                                            <div class="grid-post-media gpm_sing">
+                                                                <div class="bg-wrap">
+                                                                    <div class="bg" data-bg="images/all/21.jpg"></div>
+                                                                    <div class="overlay"></div>
+                                                                </div>
+                                                                <div class="grid-post-media_title">
+                                                                    <a class="post-category-marker"
+                                                                        href="category.html">Technology</a>
+                                                                    <h4><a href="post-single.html">Tesla it tested
+                                                                            hypersonic Model-C</a></h4>
+                                                                    <span class="video-date"><i class="far fa-clock"></i>16
+                                                                        january 2022</span>
+                                                                    <ul class="post-opt">
+                                                                        <li><i class="far fa-comments-alt"></i> 11 </li>
+                                                                        <li><i class="fal fa-eye"></i> 55 </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- swiper-slide end-->
+                                                    <!-- swiper-slide-->
+                                                    <div class="swiper-slide">
+                                                        <div class="grid-post-item  bold_gpi  fl-wrap">
+                                                            <div class="grid-post-media gpm_sing">
+                                                                <div class="bg-wrap">
+                                                                    <div class="bg" data-bg="images/all/41.jpg"></div>
+                                                                    <div class="overlay"></div>
+                                                                </div>
+                                                                <div class="grid-post-media_title">
+                                                                    <a class="post-category-marker"
+                                                                        href="category.html">Politics</a>
+                                                                    <h4><a href="post-single.html">Blue Origin practices
+                                                                            with orbital rocket in Florida</a></h4>
+                                                                    <span class="video-date"><i class="far fa-clock"></i> 05
+                                                                        december 2021</span>
+                                                                    <ul class="post-opt">
+                                                                        <li><i class="far fa-comments-alt"></i> 14 </li>
+                                                                        <li><i class="fal fa-eye"></i> 134 </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- swiper-slide end-->
+                                                    <!-- swiper-slide-->
+                                                    <div class="swiper-slide">
+                                                        <div class="grid-post-item  bold_gpi  fl-wrap">
+                                                            <div class="grid-post-media gpm_sing">
+                                                                <div class="bg-wrap">
+                                                                    <div class="bg" data-bg="images/all/22.jpg"></div>
+                                                                    <div class="overlay"></div>
+                                                                </div>
+                                                                <div class="grid-post-media_title">
+                                                                    <a class="post-category-marker"
+                                                                        href="category.html">Technology</a>
+                                                                    <h4><a href="post-single.html">Scientific research goes
+                                                                            to the next level</a></h4>
+                                                                    <span class="video-date"><i class="far fa-clock"></i> 03
+                                                                        March 2022</span>
+                                                                    <ul class="post-opt">
+                                                                        <li><i class="far fa-comments-alt"></i> 25 </li>
+                                                                        <li><i class="fal fa-eye"></i> 164 </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- swiper-slide end-->
+                                                </div>
+                                                <div class="sgs-pagination sgs_hor "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <!-- box-widget  end -->
+                                <!-- box-widget -->
+                                {{-- <div class="box-widget fl-wrap">
+                                    <div class="box-widget-content">
+                                        <!-- content-tabs-wrap -->
+                                        <div class="content-tabs-wrap tabs-act tabs-widget fl-wrap">
+                                            <div class="content-tabs fl-wrap">
+                                                <ul class="tabs-menu fl-wrap no-list-style">
+                                                    <li class="current"><a href="#tab-popular"> Popular News </a></li>
+                                                    <li><a href="#tab-resent">Resent News</a></li>
+                                                </ul>
+                                            </div>
+                                            <!--tabs -->
+                                            <div class="tabs-container">
+                                                <!--tab -->
+                                                <div class="tab">
+                                                    <div id="tab-popular" class="tab-content first-tab">
+                                                        <div class="post-widget-container fl-wrap">
+                                                            <!-- post-widget-item -->
+                                                            <div class="post-widget-item fl-wrap">
+                                                                <div class="post-widget-item-media">
+                                                                    <a href="post-single.html"><img
+                                                                            src="images/all/thumbs/1.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="post-widget-item-content">
+                                                                    <h4><a href="post-single.html">How to start Home
+                                                                            education.</a></h4>
+                                                                    <ul class="pwic_opt">
+                                                                        <li><span><i class="far fa-clock"></i> 25 may
+                                                                                2022</span></li>
+                                                                        <li><span><i class="far fa-comments-alt"></i>
+                                                                                12</span></li>
+                                                                        <li><span><i class="fal fa-eye"></i> 654</span></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- post-widget-item end -->
+                                                            <!-- post-widget-item -->
+                                                            <div class="post-widget-item fl-wrap">
+                                                                <div class="post-widget-item-media">
+                                                                    <a href="post-single.html"><img
+                                                                            src="images/all/thumbs/2.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="post-widget-item-content">
+                                                                    <h4><a href="post-single.html">The secret to moving this
+                                                                            screening.</a></h4>
+                                                                    <ul class="pwic_opt">
+                                                                        <li><span><i class="far fa-clock"></i> 13 april
+                                                                                2021</span></li>
+                                                                        <li><span><i class="far fa-comments-alt"></i>
+                                                                                6</span></li>
+                                                                        <li><span><i class="fal fa-eye"></i> 1227</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- post-widget-item end -->
+                                                            <!-- post-widget-item -->
+                                                            <div class="post-widget-item fl-wrap">
+                                                                <div class="post-widget-item-media">
+                                                                    <a href="post-single.html"><img
+                                                                            src="images/all/thumbs/3.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="post-widget-item-content">
+                                                                    <h4><a href="post-single.html">Fall ability to keep
+                                                                            Congress on rails.</a></h4>
+                                                                    <ul class="pwic_opt">
+                                                                        <li><span><i class="far fa-clock"></i> 02 December
+                                                                                2021</span></li>
+                                                                        <li><span><i class="far fa-comments-alt"></i>
+                                                                                12</span></li>
+                                                                        <li><span><i class="fal fa-eye"></i> 654</span></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- post-widget-item end -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--tab  end-->
+                                                <!--tab -->
+                                                <div class="tab">
+                                                    <div id="tab-resent" class="tab-content">
+                                                        <div class="post-widget-container fl-wrap">
+                                                            <!-- post-widget-item -->
+                                                            <div class="post-widget-item fl-wrap">
+                                                                <div class="post-widget-item-media">
+                                                                    <a href="post-single.html"><img
+                                                                            src="images/all/thumbs/5.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="post-widget-item-content">
+                                                                    <h4><a href="post-single.html">Magpie nesting zone
+                                                                            sites.</a></h4>
+                                                                    <ul class="pwic_opt">
+                                                                        <li><span><i class="far fa-clock"></i> 05 april
+                                                                                2021</span></li>
+                                                                        <li><span><i class="far fa-comments-alt"></i>
+                                                                                16</span></li>
+                                                                        <li><span><i class="fal fa-eye"></i> 727</span></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- post-widget-item end -->
+                                                            <!-- post-widget-item -->
+                                                            <div class="post-widget-item fl-wrap">
+                                                                <div class="post-widget-item-media">
+                                                                    <a href="post-single.html"><img
+                                                                            src="images/all/thumbs/6.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="post-widget-item-content">
+                                                                    <h4><a href="post-single.html">Locals help create whole
+                                                                            new community.</a></h4>
+                                                                    <ul class="pwic_opt">
+                                                                        <li><span><i class="far fa-clock"></i> 22 march
+                                                                                2021</span></li>
+                                                                        <li><span><i class="far fa-comments-alt"></i>
+                                                                                31</span></li>
+                                                                        <li><span><i class="fal fa-eye"></i> 63</span></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- post-widget-item end -->
+                                                            <!-- post-widget-item -->
+                                                            <div class="post-widget-item fl-wrap">
+                                                                <div class="post-widget-item-media">
+                                                                    <a href="post-single.html"><img
+                                                                            src="images/all/thumbs/7.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="post-widget-item-content">
+                                                                    <h4><a href="post-single.html">Tennis season still to
+                                                                            proceed.</a></h4>
+                                                                    <ul class="pwic_opt">
+                                                                        <li><span><i class="far fa-clock"></i> 06 December
+                                                                                2021</span></li>
+                                                                        <li><span><i class="far fa-comments-alt"></i>
+                                                                                05</span></li>
+                                                                        <li><span><i class="fal fa-eye"></i> 145</span></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- post-widget-item end -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--tab end-->
+                                            </div>
+                                            <!--tabs end-->
+                                        </div>
+                                        <!-- content-tabs-wrap end -->
+                                    </div>
+                                </div>
+                                <!-- box-widget  end -->
+                            </div> --}}
+                            <!-- sidebar  end -->
+                        {{-- </div>
+                    </div>
+                    <div class="limit-box fl-wrap"></div>
+                </div> --}}
+            </section>
+            <!-- section end -->
+            <!-- section  -->
+            {{-- <div class="gray-bg ad-wrap fl-wrap">
+                <div class="content-banner-wrap">
+                    <img src="images/all/banner.jpg" class="respimg" alt="">
+                </div>
+            </div> --}}
+            <!-- section end -->
+        </div>
+     
 @endsection

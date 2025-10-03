@@ -91,6 +91,25 @@ class BlogController extends Controller
             ]);
         }
 
+                public function show($id)
+        {
+            $article = Article::with('comments')->findOrFail($id);
+            return view('blog-single', compact('article'));
+        }
+
+        public function showCategory($slug)
+        {
+            $category = \App\Models\Category::where('slug', $slug)->firstOrFail();
+
+            $articles = \App\Models\Article::published()
+                ->where('category_id', $category->id)
+                ->latest()
+                ->paginate(10);
+
+            return view('pages.category', compact('category', 'articles'));
+        }
+
+
 
 }
 

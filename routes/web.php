@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Counter;
@@ -135,5 +137,17 @@ Route::get('telecharger/{filename}', function ($filename) {
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/category/{category}', [BlogController::class, 'byCategory'])->name('blog.category');
 Route::get('/blog/search', [BlogController::class, 'search'])->name('blog.search');
+
+Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('blog_detail');
+
+
+
+Route::post('/article/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
+Route::get('/article/{id}', [BlogController::class, 'show'])->name('article.show');
+Route::get('/category/{id}', [BlogController::class, 'byCategory'])->name('category.articles');
+
+
+
+
 
 

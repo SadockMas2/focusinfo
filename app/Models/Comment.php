@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
-    protected $fillable = [
+      protected $fillable = [
         'content',
         'user_id',
         'article_id',
         'parent_id',
         'approved',
+        'name',
+        'email',
     ];
 
     protected $casts = [
@@ -28,6 +30,7 @@ class Comment extends Model
     {
         return $this->belongsTo(Article::class);
     }
+    
 
     public function replies()
     {
@@ -38,4 +41,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Comment::class, 'parent_id');
     }
+        public function comments()
+    {
+        return $this->hasMany(Comment::class)->where('approved', true)->orderBy('created_at', 'desc');
+    }
+
 }

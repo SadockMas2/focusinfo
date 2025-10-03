@@ -47,10 +47,12 @@ class Article extends Model implements HasMedia
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    public function comments(): HasMany
+    public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'article_id');
     }
+
+
 
     // public function tags(): BelongsToMany
     // {
@@ -115,4 +117,24 @@ class Article extends Model implements HasMedia
     //         ->saveSlugsTo('slug')
     //         ->doNotGenerateSlugsOnUpdate();
     // }
+
+            // Article précédent
+        public function previous()
+        {
+            return self::where('id', '<', $this->id)
+                    ->published()
+                    ->orderBy('id', 'desc')
+                    ->first();
+        }
+
+        // Article suivant
+        public function next()
+        {
+            return self::where('id', '>', $this->id)
+                    ->published()
+                    ->orderBy('id', 'asc')
+                    ->first();
+        }
+
+
 }

@@ -1158,7 +1158,7 @@ section {
 .hero-section_title h2 {
     font-size: 36px;
 	font-family:'Times New Roman', Times, serif,bold;
-	color: #563535;    
+	color: #ffffff;    
     line-height: 1.2;
     margin-bottom: 10px;
 }
@@ -1698,32 +1698,37 @@ section {
 }
 /*------ footer-------------------------------------------------*/
 .main-footer {
+	
     background: #000;
     color: #ccc;
     padding: 60px 0 30px;
     font-family: 'Roboto', sans-serif;
 }
 
-/* Conteneur des cards */
 .footer-cards {
     display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;        
-    gap: 70px;               
+    justify-content: center;
+    flex-wrap: nowrap;      
+    gap: 10px;              
+    flex-direction: row;    
 }
 
-
-
 .card-footer {
-    flex: 0 1 300px;        
-    background: #111;
-    padding: 30px 25px;
+	flex: 0 1 20%;           
+    max-width: 320px;       
+    min-width: 250px;     
+	  
+	background: #111;
+    padding: 5px 25px;
     border-radius: 10px;
-    margin: 10px auto;
+    /* margin: 0; */
+	margin-top: 20px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     transition: transform 0.3s, box-shadow 0.3s;
 }
+
+
 
 .card-footer:hover {
     transform: translateY(-5px);
@@ -1731,6 +1736,7 @@ section {
 }
 
 .footer-widget-title {
+	margin-top: 10px;
     font-size: 22px;
     font-weight: 700;
     color: #fff;
@@ -1738,6 +1744,9 @@ section {
     border-bottom: 2px solid #ffa500;
     display: inline-block;
     padding-bottom: 5px;
+}
+.footer-widget-wrap {
+    padding-top: 60px; 
 }
 
 .card-footer p,
@@ -2655,7 +2664,8 @@ section {
 	border-radius: 4px;
 }
 .single-post-content_text p {
-	font-size: 12px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif,bold;
 	font-weight: 400;
 	color: #000;
 }
@@ -2987,11 +2997,14 @@ section {
 	padding: 18px 30px;
 }
 .pr-subtitle {
+	text-align: center;
     float: left;
-    font-size: 14px;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, bold;
+    font-size: 20px;
     font-weight: 600;
-    color: #000;
-    margin-bottom: 30px;
+    color: #900808;
+	margin-top: 30px;
+    margin-bottom: 50px;
 }
 .pr-subtitle i {
 	
@@ -3088,8 +3101,12 @@ margin-bottom: 10px;
 .single-post-nav_next .spn_box_img {
 	right: 0;
 }
+.spn_box{
+	margin-top:40px ;
+	margin-bottom: 40px;
+}
 .spn-box-content_subtitle {
-	font-size: 11px;
+	font-size: 14px;
 	text-transform: uppercase;
 	font-weight: 600;
 	color: #666;
@@ -3097,6 +3114,7 @@ margin-bottom: 10px;
 	padding-bottom: 4px; 
 }
 .spn-box-content_title {
+	color:blue;
 	font-size: 13px;
 	font-weight: 600;
 	display: block;
